@@ -1,14 +1,18 @@
 package com.example.newsapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.newsapp.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityMainBinding
@@ -19,12 +23,13 @@ class MainActivity : AppCompatActivity() {
 
 		setContentView(R.layout.fragment_splash)
 
-		Handler(Looper.myLooper()!!).postDelayed({
+		CoroutineScope(Dispatchers.Main).launch {
+			delay(5000)
 			setContentView(binding.root)
 			bottom_nav.setupWithNavController(
 				navController = nav_host_fragment.findNavController()
 			)
 
-		}, 5000)
+		}
 	}
 }
