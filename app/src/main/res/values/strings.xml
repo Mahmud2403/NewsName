@@ -2,4 +2,5 @@
     <string name="app_name">News App</string>
     <string name="my_news">MY NEWS</string>
     <string name="popular_news">Popular_news</string>
+    <string name="search">Search</string>
 </resources>
